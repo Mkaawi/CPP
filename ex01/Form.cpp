@@ -15,12 +15,11 @@ Form::Form(std::string name, bool is_signed, int grade_to_sign, int grade_to_exe
 
 Form::~Form()
 {
-
 }
 
-Form::Form(const Form &other) : name(other.name), is_signed(other.is_signed), grade_to_sign(other.grade_to_sign), grade_to_execute(other.grade_to_execute)
+Form::Form(const Form &other) : name(other.name), is_signed(other.is_signed),
+                                grade_to_sign(other.grade_to_sign), grade_to_execute(other.grade_to_execute)
 {
-
 }
 
 Form &Form::operator=(const Form &other)
@@ -32,14 +31,16 @@ Form &Form::operator=(const Form &other)
     return *this;
 }
 
-
 std::ostream &operator<<(std::ostream &os, const Form &f)
 {
-    os << "Form " << f.getName() << ", is signed: " << (f.getIsSigned() ? "yes" : "no") << ", grade required to sign: " << f.getGradeToSign() << ", grade required to execute: " << f.getGradeToExecute();
+    os << "Form " << f.getName() << ", is signed: " << (f.getIsSigned() ? "yes" : "no") << ", grade required to sign: " 
+                                        << f.getGradeToSign() << ", grade required to execute: " << f.getGradeToExecute();
     return os;
 }
 
 void Form::beSigned(const Bureaucrat &b)
 {
-
+    if (b.getGrade() > this->grade_to_sign)
+        throw GradeTooLowException();
+    this->is_signed = true;
 }
