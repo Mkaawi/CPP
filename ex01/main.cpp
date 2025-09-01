@@ -21,7 +21,7 @@ int main()
 
     std::cout << "\n---\n" << std::endl;
 
-    // Test 2: Failure to sign (grade too low)
+    // (grade too low)
     try {
         Bureaucrat intern("Tim", 150);
         Form secretPlan("World Domination Plan", false, 1, 1); // Fixed
