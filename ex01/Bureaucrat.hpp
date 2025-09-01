@@ -2,6 +2,9 @@
 
 #include <iostream>
 #include <string>
+#include <exception>
+
+class Form;
 
 class Bureaucrat
 {
@@ -21,20 +24,20 @@ public:
 
     void decrementGrade();
     void incrementGrade();
+    void signForm(Form &f) const; // Takes a Form reference
 
-class GradeTooHighException : public std::exception {
-public:
-    const char *what() const throw() {
-        return "Grade is too high!";
-    }
-};
-class GradeTooLowException : public std::exception {
-public:
-    const char *what() const throw() {
-        return "Grade is too low!";
-    }
-};
+    class GradeTooHighException : public std::exception {
+    public:
+        const char *what() const throw() {
+            return "Grade is too high!";
+        }
+    };
+    class GradeTooLowException : public std::exception {
+    public:
+        const char *what() const throw() {
+            return "Grade is too low!";
+        }
+    };
 };
 
 std::ostream &operator<<(std::ostream &os, const Bureaucrat& p);
-

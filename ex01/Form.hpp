@@ -2,7 +2,9 @@
 
 #include <iostream>
 #include <string>
-#include "Bureaucrat.hpp"
+#include <exception>
+
+class Bureaucrat;
 
 class Form
 {

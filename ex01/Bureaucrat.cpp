@@ -1,4 +1,5 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 #include <iostream>
 #include <string>
@@ -58,3 +59,14 @@ std::ostream &operator<<(std::ostream &os, const Bureaucrat& p)
     return(os);
 }
 
+void    Bureaucrat::signForm(Form &f) const
+{
+    try 
+    {
+        f.beSigned(*this);
+        std::cout << name << " signed " << f.getName() << std::endl;
+    } 
+    catch (std::exception &e) {
+        std::cout << name << " couldn't sign " << f.getName() << " because " << e.what() << std::endl;
+    }
+}
