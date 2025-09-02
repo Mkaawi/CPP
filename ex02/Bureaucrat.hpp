@@ -26,22 +26,18 @@ public:
     void incrementGrade();
     void signForm(Form &f) const; // Takes a Form reference
 
-    class GradeTooHighException : public std::exception
-    {
+    class GradeTooHighException : public std::exception {
     public:
-        const char *what() const throw()
-        {
+        const char *what() const throw() {
             return "Grade is too high!";
         }
     };
-    class GradeTooLowException : public std::exception
-    {
+    class GradeTooLowException : public std::exception {
     public:
-        const char *what() const throw()
-        {
+        const char *what() const throw() {
             return "Grade is too low!";
         }
     };
 };
 
-std::ostream &operator<<(std::ostream &os, const Bureaucrat &p);
+std::ostream &operator<<(std::ostream &os, const Bureaucrat& p);

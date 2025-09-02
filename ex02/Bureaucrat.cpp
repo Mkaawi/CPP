@@ -35,7 +35,7 @@ Bureaucrat::~Bureaucrat()
 {
 }
 
-// methods
+//methods
 
 void Bureaucrat::decrementGrade()
 {
@@ -53,21 +53,20 @@ void Bureaucrat::incrementGrade()
         grade--;
 }
 
-std::ostream &operator<<(std::ostream &os, const Bureaucrat &p)
+std::ostream &operator<<(std::ostream &os, const Bureaucrat& p)
 {
     os << p.getName() << " : " << p.getGrade();
-    return (os);
+    return(os);
 }
 
-void Bureaucrat::signForm(Form &f) const
+void    Bureaucrat::signForm(Form &f) const
 {
-    try
+    try 
     {
         f.beSigned(*this);
         std::cout << name << " signed " << f.getName() << std::endl;
-    }
-    catch (std::exception &e)
-    {
+    } 
+    catch (std::exception &e) {
         std::cout << name << " couldn't sign " << f.getName() << " because " << e.what() << std::endl;
     }
 }

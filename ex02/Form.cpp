@@ -34,8 +34,8 @@ Form &Form::operator=(const Form &other)
 
 std::ostream &operator<<(std::ostream &os, const Form &f)
 {
-    os << "Form " << f.getName() << ", is signed: " << (f.getIsSigned() ? "yes" : "no") << ", grade required to sign: "
-       << f.getGradeToSign() << ", grade required to execute: " << f.getGradeToExecute();
+    os << "Form " << f.getName() << ", is signed: " << (f.getIsSigned() ? "yes" : "no") << ", grade required to sign: " 
+                                        << f.getGradeToSign() << ", grade required to execute: " << f.getGradeToExecute();
     return os;
 }
 

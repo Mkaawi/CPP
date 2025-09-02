@@ -13,7 +13,6 @@ private:
     bool is_signed;
     const int grade_to_sign;
     const int grade_to_execute;
-
 public:
     Form();
     Form(std::string name, bool is_signed, int grade_to_sign, int grade_to_execute);
