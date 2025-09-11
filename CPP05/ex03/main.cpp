@@ -13,17 +13,17 @@ int main()
         Intern intern;
         Bureaucrat abbas("abbas", 3);
         Bureaucrat bo9al("bo9al", 1);
-        ShrubberyCreationForm tree("bush");
+        // ShrubberyCreationForm tree("bush");
         RobotomyRequestForm robot("robot");
         PresidentialPardonForm pardon("pardon");
-        bo9al.signForm(tree);
+        // bo9al.signForm(tree);
         bo9al.signForm(robot);
         bo9al.signForm(pardon);
-        bo9al.executeForm(tree);
+        // bo9al.executeForm(tree);
         bo9al.executeForm(robot);
         bo9al.executeForm(pardon);
         std::cout << bo9al << std::endl;
-        AForm *form = intern.makeForm("ShrubberyCreationForm", "berry");
+        AForm *form = intern.makeForm("shrubbery creation", "berry");
         abbas.signForm(*form);
         abbas.executeForm(*form);
 

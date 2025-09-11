@@ -21,28 +21,41 @@ Intern::~Intern()
 {
 }
 
+AForm *makeShrubberyCreation(const std::string &target) {
+    return (new ShrubberyCreationForm(target));
+}
+
+AForm *makeRobotomyRequest(const std::string &target) {
+    return (new RobotomyRequestForm(target));
+}
+
+AForm *makePresidentialPardon(const std::string &target) {
+    return (new PresidentialPardonForm(target));
+}
+
 AForm* Intern::makeForm(const std::string& formName, const std::string& target) 
 {
-    if (formName == "ShrubberyCreationForm") 
-    {
-        AForm* form = new ShrubberyCreationForm(target);
-        std::cout << "Intern creates " << form->getName() << std::endl;
-        return form;
-    }
+    std::string formNames[] = {
+        "shrubbery creation",
+        "robotomy request",
+        "presidential pardon"
+    };
 
-    else if (formName == "RobotomyRequestForm") 
-    {
-        AForm* form = new RobotomyRequestForm(target);
-        std::cout << "Intern creates " << form->getName() << std::endl;
-        return form;
-    }
+    typedef AForm* (*functions)(const std::string &target);
     
-    else if (formName == "PresidentialPardonForm") 
+    functions ptr[] = {
+        &makeShrubberyCreation,
+        &makeRobotomyRequest,
+        &makePresidentialPardon
+    };
+
+    for (int i = 0; i < 3 ; i++) 
     {
-        AForm* form = new PresidentialPardonForm(target);
-        std::cout << "Intern creates " << form->getName() << std::endl;
-        return form;
+        if (formName == formNames[i])
+        {
+            std::cout << "Intern creates " << formNames[i] << std::endl;
+            return ptr[i](target);
+        }
     }
-    else
-        throw InvalidFormNameException();
+    throw InvalidFormNameException();
 }

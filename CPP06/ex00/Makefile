@@ -1,11 +1,11 @@
-NAME = Bureaucrat
-HEADER = Bureaucrat.hpp Form.hpp
+NAME = ScalarConverter
+HEADER = ScalarConverter.hpp
 
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 CPP = c++
 RM = rm -rf
 
-SRC = Bureaucrat.cpp main.cpp Form.cpp
+SRC = main.cpp ScalarConverter.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all : $(NAME)
