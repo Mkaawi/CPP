@@ -1,30 +1,25 @@
 #include "ScalarConverter.hpp"
+#include "Utils.hpp"
 
-ScalarConverter::ScalarConverter(std::string input) : input(input)
-{
-}
+ScalarConverter::ScalarConverter(){}
+ScalarConverter::~ScalarConverter(){}
+ScalarConverter::ScalarConverter(const ScalarConverter &other){ (void)other; }
+ScalarConverter &ScalarConverter::operator=(const ScalarConverter &other){ (void)other; return (*this); }
 
-ScalarConverter::ScalarConverter() : input("")
+void ScalarConverter::convert(const std::string& str)
 {
-}
+    Ltype type = getType(str);
 
-ScalarConverter::~ScalarConverter()
-{
-}
-
-ScalarConverter::ScalarConverter(const ScalarConverter &other) : input(other.input)
-{
-}
-
-ScalarConverter &ScalarConverter::operator=(const ScalarConverter &other)
-{
-    if (this != &other)
-        this->input = other.input;
-    return *this;
-}
-
-std::ostream &operator<<(std::ostream &os, const ScalarConverter &p)
-{
-    os << "Input: " << p.getInput();
-    return os;
+    if (type == CHAR)
+        convertToChar(str[1]);
+    else if(type == INT)
+        convertToInt(str);
+    else if(type == FLOAT)
+        convertToFloat(str);
+    else if(type == DOUBLE)
+        convertToDouble(str);
+    else if(type == PSEUDO)
+        convertToPseudo(str);
+    else
+        std::cout << "invalid input" << std::endl;
 }

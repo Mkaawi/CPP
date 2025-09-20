@@ -1,19 +1,17 @@
 #pragma once
 
 #include <iostream>
+#include <exception>
+#include "Utils.hpp"
 
 class ScalarConverter
 {
 private:
-    std::string input;
-public:
     ScalarConverter();
-    ScalarConverter(std::string input);
-    ~ScalarConverter();
     ScalarConverter(const ScalarConverter &other);
     ScalarConverter &operator=(const ScalarConverter &other);
-    std::string getInput() const { return input; }
+    ~ScalarConverter();
+public:
+    static void convert(const std::string& str);
 };
-
-std::ostream &operator<<(std::ostream &os, const ScalarConverter &p);
 
