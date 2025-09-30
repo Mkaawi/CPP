@@ -1,12 +1,14 @@
 #include "Utils.hpp"
+#include <iomanip>
 
 bool isPseudo(const std::string &literal)
 {
     if (literal == "nan" || literal == "nanf" || literal == "+inf" || literal == "-inf" || literal == "+inff" || literal == "-inff")
         return 1;
+    return 0;
 }
 
-void AllImpossible() 
+void AllImpossible()
 {
     std::cout << "char: impossible" << std::endl;
     std::cout << "int: impossible" << std::endl;
@@ -14,9 +16,35 @@ void AllImpossible()
     std::cout << "double: impossible" << std::endl;
 }
 
-bool parseInt(const std::string &str)
+bool parseInt(const std::string &str, int &res)
 {
-    
+    char *endptr;
+    long tmp = strtol(str.c_str(), &endptr, 10);
+    if (*endptr != '\0' || tmp > INT_MAX || tmp < INT_MIN)
+        return (false);
+    res = static_cast<int>(tmp);
+    return (true);
+}
+
+bool parseFloat(const std::string &str, float &res)
+{
+    char *endptr;
+    float tmp = std::strtof(str.c_str(), &endptr);
+    std::string remaining(endptr);
+    if (*endptr != '\0' && remaining != "f" && remaining != "F")
+        return (false);
+    res = tmp;
+    return (true);
+}
+
+bool parseDouble(const std::string &str, double &res)
+{
+    char *endptr;
+    double tmp = strtod(str.c_str(), &endptr);
+    if (*endptr != '\0')
+        return (false);
+    res = tmp;
+    return (true);
 }
 
 void convertToChar(const char &c)
@@ -29,21 +57,68 @@ void convertToChar(const char &c)
 
 void convertToInt(const std::string &str)
 {
-    if (parseInt(str))
+    int res;
+    if (parseInt(str, res))
     {
-
+        if (res < std::numeric_limits<char>::min() || res > std::numeric_limits<char>::max())
+            std::cout << "char: impossible" << std::endl;
+        else
+        {
+            if (!isprint(res))
+                std::cout << "Char : Non Displayable" << std::endl;
+            else
+                std::cout << "Char: '" << static_cast<char>(res) << "'" << std::endl;
+        }
+        std::cout << "int: " << res << std::endl;
+        std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(res) << "f" << std::endl;
+        std::cout << "double: " << static_cast<double>(res) << std::endl;
     }
     else
         AllImpossible();
 }
+
 void convertToFloat(const std::string &str)
 {
+    float res;
+    if (parseFloat(str, res))
+    {
+        if (!isprint(res))
+            std::cout << "Char : Non Displayable" << std::endl;
+        else
+            std::cout << "Char: '" << static_cast<char>(res) << "'" << std::endl;
+        if (res > INT_MAX || res < INT_MIN)
+            std::cout << "int: impossible" << std::endl;
+        else
+            std::cout << "int: " << static_cast<int>(res) << std::endl;
+        std::cout << "float: " << std::fixed << std::setprecision(1) << res << "f" << std::endl;
+        std::cout << "double: " << static_cast<double>(res) << std::endl;
+    }
+    else
+        AllImpossible();
 }
+
 void convertToDouble(const std::string &str)
 {
+    double res;
+    if (parseDouble(str, res))
+    {
+        if (!isprint(res))
+            std::cout << "Char : Non Displayable" << std::endl;
+        else
+            std::cout << "Char: '" << static_cast<char>(res) << "'" << std::endl;
+        if (res > INT_MAX || res < INT_MIN)
+            std::cout << "int: impossible" << std::endl;
+        else
+            std::cout << "int: " << static_cast<int>(res) << std::endl;
+        std::cout << "float: " << std::fixed << std::setprecision(1) << res << "f" << std::endl;
+        std::cout << "double: " << static_cast<double>(res) << std::endl;
+    }
+    else
+        AllImpossible();
 }
 void convertToPseudo(const std::string &str)
 {
+    (void)str;
 }
 
 Ltype getType(const std::string &str)

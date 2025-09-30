@@ -1,11 +1,11 @@
-NAME = ScalarConverter
-HEADER = ScalarConverter.hpp Utils.hpp
+NAME = Base
+HEADER = Base.hpp A.hpp B.hpp C.hpp
 
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 CPP = c++
 RM = rm -rf
 
-SRC = main.cpp ScalarConverter.cpp Utils.cpp
+SRC = main.cpp Base.cpp A.cpp B.cpp C.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all : $(NAME)

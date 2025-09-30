@@ -1,25 +1,38 @@
 #include "ScalarConverter.hpp"
 #include "Utils.hpp"
 
-ScalarConverter::ScalarConverter(){}
-ScalarConverter::~ScalarConverter(){}
-ScalarConverter::ScalarConverter(const ScalarConverter &other){ (void)other; }
-ScalarConverter &ScalarConverter::operator=(const ScalarConverter &other){ (void)other; return (*this); }
+ScalarConverter::ScalarConverter() {}
+ScalarConverter::~ScalarConverter() {}
+ScalarConverter::ScalarConverter(const ScalarConverter &other) { (void)other; }
+ScalarConverter &ScalarConverter::operator=(const ScalarConverter &other)
+{
+    (void)other;
+    return (*this);
+}
 
-void ScalarConverter::convert(const std::string& str)
+void ScalarConverter::convert(const std::string &str)
 {
     Ltype type = getType(str);
 
-    if (type == CHAR)
+    switch (type)
+    {
+    case CHAR:
         convertToChar(str[1]);
-    else if(type == INT)
+        break;
+    case INT:
         convertToInt(str);
-    else if(type == FLOAT)
+        break;
+    case FLOAT:
         convertToFloat(str);
-    else if(type == DOUBLE)
+        break;
+    case DOUBLE:
         convertToDouble(str);
-    else if(type == PSEUDO)
+        break;
+    case PSEUDO:
         convertToPseudo(str);
-    else
+        break;
+    default:
         std::cout << "invalid input" << std::endl;
+        break;
+    }
 }

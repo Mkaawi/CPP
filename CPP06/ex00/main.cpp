@@ -1,6 +1,12 @@
 #include "ScalarConverter.hpp"
 
-int main ()
+int main (int ac , char **av)
 {
-    ScalarConverter::convert("c");
+    if (ac != 2)
+    {
+        std::cout << "invalid" << std::endl;
+        return 1;
+    }
+    ScalarConverter::convert(av[1]);
+    std::cout << std::endl;
 }

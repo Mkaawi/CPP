@@ -1,11 +1,11 @@
-NAME = ScalarConverter
-HEADER = ScalarConverter.hpp Utils.hpp
+NAME = Serializer
+HEADER = Serializer.hpp
 
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 CPP = c++
 RM = rm -rf
 
-SRC = main.cpp ScalarConverter.cpp Utils.cpp
+SRC = main.cpp Serializer.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all : $(NAME)
