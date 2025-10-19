@@ -1,0 +1,32 @@
+# include "Array.hpp"
+
+template<typename T>
+Array<T>::Array() : _data(NULL), _size(0) {}
+
+template<typename T>
+Array<T>::Array(unsigned int n) : _data(new T[n]()), _size(n) {}
+
+template<typename T>
+Array<T>::Array(const Array &other) : _data(new T[other._size]()), _size(other._size)
+{
+    for (unsigned int i = 0; i < _size; i++)
+        _data[i] = other._data[i];
+}
+
+template<typename T>
+Array<T> &Array<T>::operator=(const Array &other) {
+    if (this != &other) {
+        delete[] _data;
+        _size = other._size;
+        _data = new T[_size]();
+        for (unsigned int i = 0; i < _size; i++)
+            _data[i] = other._data[i];
+    }
+    return *this;
+}
+
+template<typename T>
+Array<T>::~Array()
+{
+    delete[] _data;
+}
