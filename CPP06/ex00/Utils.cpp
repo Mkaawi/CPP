@@ -116,9 +116,30 @@ void convertToDouble(const std::string &str)
     else
         AllImpossible();
 }
+
 void convertToPseudo(const std::string &str)
 {
-    (void)str;
+    std::string fVal, dVal;
+    std::cout << "char: impossible" << std::endl;
+    std::cout << "int: impossible" << std::endl;
+
+    if (str == "nan" || str == "nanf")
+    {
+        fVal = "nanf";
+        dVal = "nan";
+    }
+    else if (str == "+inf" || str == "+inff")
+    {
+        fVal = "+inff";
+        dVal = "+inf";
+    }
+    else if (str == "-inf" || str == "-inff")
+    {
+        fVal = "-inff";
+        dVal = "-inf";
+    }
+    std::cout << "float: " << fVal << std::endl;
+    std::cout << "double: " << dVal << std::endl;
 }
 
 Ltype getType(const std::string &str)
