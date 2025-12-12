@@ -18,6 +18,16 @@ class Span
 
         void addNumber(int num);
 
+        template<typename iter>
+        void Span::addRange(iter begin, iter end);
+
         int shortestSpan() const;
         int longestSpan() const;
 };
+
+template<typename iter>
+void Span::addRange(iter begin, iter end)
+{
+    while (begin++ != end)
+        addNumber(*begin);
+}
