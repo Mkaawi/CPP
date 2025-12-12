@@ -32,7 +32,7 @@ void ScalarConverter::convert(const std::string &str)
         convertToPseudo(str);
         break;
     default:
-        std::cout << "invalid input" << std::endl;
+        AllImpossible();
         break;
     }
 }

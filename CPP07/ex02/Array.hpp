@@ -38,8 +38,7 @@ Array<T>::Array(unsigned int n) : data(new T[n]()), len(n) {}
 template <typename T>
 Array<T>::Array(const Array &other) : data(new T[other.len]()), len(other.len)
 {
-    for (unsigned int i = 0; i < len; i++)
-        data[i] = other.data[i];
+    *this = other;
 }
 
 template <typename T>

@@ -16,16 +16,6 @@ void AllImpossible()
     std::cout << "double: impossible" << std::endl;
 }
 
-bool parseInt(const std::string &str, int &res)
-{
-    char *endptr;
-    long tmp = strtol(str.c_str(), &endptr, 10);
-    if (*endptr != '\0' || tmp > INT_MAX || tmp < INT_MIN)
-        return (false);
-    res = static_cast<int>(tmp);
-    return (true);
-}
-
 bool parseFloat(const std::string &str, float &res)
 {
     char *endptr;
@@ -57,24 +47,27 @@ void convertToChar(const char &c)
 
 void convertToInt(const std::string &str)
 {
-    int res;
-    if (parseInt(str, res))
+    double res;
+    if (parseDouble(str, res))
     {
-        if (res < std::numeric_limits<char>::min() || res > std::numeric_limits<char>::max())
-            std::cout << "char: impossible" << std::endl;
-        else
+        if (res < INT_MIN || res > INT_MAX)
         {
-            if (!isprint(res))
-                std::cout << "Char : Non Displayable" << std::endl;
-            else
-                std::cout << "Char: '" << static_cast<char>(res) << "'" << std::endl;
+            std::cout << "char: impossible" << std::endl;
+            std::cout << "int: impossible" << std::endl;
+            std::cout << "float: " << std::fixed << std::setprecision(1) 
+                      << static_cast<float>(res) << "f" << std::endl;
+            std::cout << "double: " << res << std::endl;
+            return;
         }
         std::cout << "int: " << res << std::endl;
-        std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(res) << "f" << std::endl;
+        std::cout << "float: " << std::fixed << std::setprecision(1) 
+                  << static_cast<float>(res) << "f" << std::endl;
         std::cout << "double: " << static_cast<double>(res) << std::endl;
     }
     else
+    {
         AllImpossible();
+    }
 }
 
 void convertToFloat(const std::string &str)
