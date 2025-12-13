@@ -24,9 +24,35 @@ void Span::addNumber(int num)
 
 int Span::shortestSpan() const
 {
+	if (nums.size() < 2)
+		throw std::logic_error("not enough members");
 	
+	std::vector<int> sorted = nums;
+	std::sort(sorted.begin(), sorted.end());
+
+	int shortest = sorted[1] = sorted[0];
+	for (int i = 0; i < sorted.size(); i++)
+	{
+		int j = sorted[i + 1] - sorted[i];
+		if (j < shortest)
+			shortest = j;
+	}
+	return shortest;
 }
 int Span::longestSpan() const
 {
+	if (nums.size() < 2)
+		throw std::logic_error("not enough members");
+	
+	std::vector<int> sorted = nums;
+	std::sort(sorted.begin(), sorted.end());
 
+	int longest = sorted[1] = sorted[0];
+	for (int i = 0; i < sorted.size(); i++)
+	{
+		int j = sorted[i + 1] - sorted[i];
+		if (j > longest)
+			longest = j;
+	}
+	return longest;
 }
