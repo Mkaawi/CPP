@@ -8,7 +8,7 @@
 class Span
 {
     private:
-        unsigned int size;
+        unsigned int maxSize;
         std::vector<int> nums;
     public:
         Span(unsigned int N);
@@ -19,15 +19,21 @@ class Span
         void addNumber(int num);
 
         template<typename iter>
-        void Span::addRange(iter begin, iter end);
+        void addRange(iter begin, iter end);
 
         int shortestSpan() const;
         int longestSpan() const;
+    
+        unsigned int getMax() const;
+        unsigned int getSize() const;
 };
 
 template<typename iter>
 void Span::addRange(iter begin, iter end)
 {
-    while (begin++ != end)
+    while (begin != end)
+    {
         addNumber(*begin);
+        begin++;
+    }
 }
